@@ -1,15 +1,16 @@
-import { useEffect } from "react";
+import { lazy, useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { fetchContacts } from "./redux/contacts/operations";
 import { selectError, selectLoading } from "./redux/contacts/slice";
 import { Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
-import HomePage from "./pages/HomePage";
-import NotFoundPage from "./pages/NotFoundPage";
-import ContactPage from "./pages/ContactPage";
-import RegisterPage from "./pages/RegisterPage";
-import LoginPage from "./pages/LoginPage";
+
+const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
+const NotFoundPage = lazy(() => import("./pages/NotFoundPage/NotFoundPage"));
+const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage"));
+const RegisterPage = lazy(() => import("./pages/RegisterPage/RegisterPage"));
+const ContactPage = lazy(() => import("./pages/ContactPage/ContactPage"));
 
 export default function App() {
   const dispatch = useDispatch();
