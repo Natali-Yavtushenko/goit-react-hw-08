@@ -1,5 +1,6 @@
 import { Field, Form, Formik } from "formik";
 import s from "../LoginPage/LoginPage.module.css";
+import { Link } from "react-router-dom";
 
 const RegisterPage = () => {
   const initiaValues = {
@@ -30,6 +31,11 @@ const RegisterPage = () => {
           <button className={s.button} type="submit">
             Register
           </button>
+          <p>
+            <p>
+              You already have account? <Link to="/lodin">Login!</Link>
+            </p>
+          </p>
         </Form>
       </Formik>
     </div>
