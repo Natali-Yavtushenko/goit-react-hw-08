@@ -16,14 +16,14 @@ const LoginPage = () => {
     <div className={s.container}>
       <Formik initialValues={initiaValues} onSubmit={handleSabmit}>
         <Form className={s.form}>
-          <h3>Login</h3>
+          <h3 className={s.subtitle}>Login</h3>
           <label className={s.label}>
             <span>Email:</span>
-            <Field name="email" />
+            <Field className={s.field} name="email" />
           </label>
           <label className={s.label}>
             <span>Password:</span>
-            <Field name="password" type="password" />
+            <Field className={s.field} name="password" type="password" />
           </label>
           <button className={s.button} type="submit">
             Login

@@ -15,18 +15,18 @@ const RegisterPage = () => {
     <div className={s.container}>
       <Formik initialValues={initiaValues} onSubmit={handleSabmit}>
         <Form className={s.form}>
-          <h3>Register</h3>
+          <h3 className={s.subtitle}>Register</h3>
           <label className={s.label}>
             <span>Name:</span>
             <Field className={s.field} name="name" />
           </label>
           <label className={s.label}>
             <span>Email:</span>
-            <Field name="email" />
+            <Field className={s.field} name="email" />
           </label>
           <label className={s.label}>
             <span>Password:</span>
-            <Field name="password" type="password" />
+            <Field className={s.field} name="password" type="password" />
           </label>
           <button className={s.button} type="submit">
             Register
