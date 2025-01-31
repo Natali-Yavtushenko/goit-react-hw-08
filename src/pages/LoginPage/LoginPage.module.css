@@ -53,8 +53,9 @@
   box-shadow: 2px 2px 2px 2px grey;
   border: 1px solid black;
   cursor: pointer;
+  background-color: rgb(71, 151, 243);
   transition: all 0.4s ease-in-out;
   &:hover {
-    background-color: lightcyan;
+    background-color: rgb(7, 117, 241);
   }
 }

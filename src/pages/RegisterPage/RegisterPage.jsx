@@ -1,14 +1,22 @@
 import { Field, Form, Formik } from "formik";
 import s from "../LoginPage/LoginPage.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { registerThunk } from "../../redux/auth/operations";
 
 const RegisterPage = () => {
   const initiaValues = {
     email: "",
     password: "",
+    name: "",
   };
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const handleSabmit = (values, actions) => {
     console.log(values);
+    dispatch(registerThunk(values))
+      .unwrap()
+      .then(() => navigate("/"));
     actions.resetForm();
   };
   return (
@@ -32,9 +40,7 @@ const RegisterPage = () => {
             Register
           </button>
           <p>
-            <p>
-              You already have account? <Link to="/lodin">Login!</Link>
-            </p>
+            You already have account? <Link to="/Login">Login!</Link>
           </p>
         </Form>
       </Formik>
