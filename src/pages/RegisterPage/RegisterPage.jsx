@@ -1,27 +1,30 @@
 import { Field, Form, Formik } from "formik";
-import s from "../LoginPage/LoginPage.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { registerThunk } from "../../redux/auth/operations";
+import s from "./RegisterPage.module.css";
 
 const RegisterPage = () => {
-  const initiaValues = {
+  const initialValues = {
     email: "",
     password: "",
     name: "",
   };
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const handleSabmit = (values, actions) => {
+
+  const handleSubmit = (values, actions) => {
     console.log(values);
     dispatch(registerThunk(values))
       .unwrap()
       .then(() => navigate("/"));
     actions.resetForm();
   };
+
   return (
     <div className={s.container}>
-      <Formik initialValues={initiaValues} onSubmit={handleSabmit}>
+      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         <Form className={s.form}>
           <h3 className={s.subtitle}>Register</h3>
           <label className={s.label}>
@@ -30,7 +33,7 @@ const RegisterPage = () => {
           </label>
           <label className={s.label}>
             <span>Email:</span>
-            <Field className={s.field} name="email" />
+            <Field className={s.field} name="email" type="email" />
           </label>
           <label className={s.label}>
             <span>Password:</span>
@@ -39,8 +42,11 @@ const RegisterPage = () => {
           <button className={s.button} type="submit">
             Register
           </button>
-          <p>
-            You already have account? <Link to="/Login">Login!</Link>
+          <p className={s.text}>
+            You already have an account?{" "}
+            <Link className={s.link} to="/login">
+              Login!
+            </Link>
           </p>
         </Form>
       </Formik>

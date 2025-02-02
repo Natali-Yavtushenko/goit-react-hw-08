@@ -36,7 +36,7 @@ const LoginPage = () => {
             Login
           </button>
           <p>
-            You do not account? <Link to="/register">Lets create one!</Link>
+            You do not account? <Link to="/register">Registretion</Link>
           </p>
         </Form>
       </Formik>

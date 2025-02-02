@@ -1,16 +1,18 @@
 import { NavLink } from "react-router-dom";
-import isLoggedIn from "../Header/Header";
+import { useAuth } from "../../redux/auth/operations";
+import { AuthNav } from "../AuthNav/AuthNav"; // Імпортуємо `AuthNav`
 import s from "./Navigation.module.css";
 
-<nav className={s.nav}>
-  <NavLink to="/">Home</NavLink>
-  <NavLink to="/contacts">Contacts</NavLink>
-  {isLoggedIn ? (
-    <button>Logout</button>
-  ) : (
-    <>
-      <NavLink to="/register">Register</NavLink>
-      <NavLink to="/login">Login</NavLink>
-    </>
-  )}
-</nav>;
+const Navigation = () => {
+  const { isLoggedIn } = useAuth();
+
+  return (
+    <nav className={s.nav}>
+      <NavLink to="/">Home</NavLink>
+      <NavLink to="/contacts">Contacts</NavLink>
+      {isLoggedIn ? <button className={s.button}>Logout</button> : <AuthNav />}
+    </nav>
+  );
+};
+
+export default Navigation;
