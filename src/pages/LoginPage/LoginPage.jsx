@@ -35,7 +35,7 @@ const LoginPage = () => {
           <button className={s.button} type="submit">
             Login
           </button>
-          <p>
+          <p style={{ display: "flex", alignItems: "center", gap: "10px" }}>
             You do not account? <Link to="/register">Registretion</Link>
           </p>
         </Form>

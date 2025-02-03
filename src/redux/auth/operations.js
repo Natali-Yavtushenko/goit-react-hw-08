@@ -18,6 +18,7 @@ export const registerThunk = createAsyncThunk(
   async (credentials, thunkApi) => {
     try {
       const { data } = await axios.post("/users/signup", credentials);
+      setAuthHeader(data.token);
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
@@ -27,25 +28,27 @@ export const registerThunk = createAsyncThunk(
 
 export const loginThunk = createAsyncThunk(
   "auth/login",
-  async (credentials, thunkApi) => {
+  async (credentials, thunkAPI) => {
     try {
-      console.log("Logging in with:", credentials);
       const { data } = await axios.post("/users/login", credentials);
+      setAuthHeader(data.token);
+      localStorage.setItem("token", data.token);
       return data;
     } catch (error) {
-      return thunkApi.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
 export const logOutThunk = createAsyncThunk(
   "auth/logout",
-  async (__, thunkApi) => {
+  async (_, thunkAPI) => {
     try {
-      await axios.post("users/logout");
+      await axios.post("/users/logout");
       clearAuthHeader();
+      localStorage.removeItem("token");
     } catch (error) {
-      return thunkApi.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -53,16 +56,15 @@ export const logOutThunk = createAsyncThunk(
 export const refreshUser = createAsyncThunk(
   "auth/refresh",
   async (_, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const persistedToken = state.auth.token;
-
-    if (persistedToken === null) {
-      return thunkAPI.rejectWithValue("Unable to fetch user");
+    const token = localStorage.getItem("token");
+    if (!token) {
+      return thunkAPI.rejectWithValue("No token found");
     }
+
     try {
-      setAuthHeader(persistedToken);
-      const res = await axios.get("/users/me");
-      return res.data;
+      setAuthHeader(token);
+      const { data } = await axios.get("/users/current");
+      return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

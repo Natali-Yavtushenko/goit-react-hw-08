@@ -8,7 +8,7 @@ const Navigation = () => {
   return (
     <nav className={s.nav}>
       <NavLink to="/">Home</NavLink>
-      <NavLink to="/contacts">Contacts</NavLink>
+      {isLoggedIn && <NavLink to="/contacts">Contacts</NavLink>}
       {isLoggedIn ? <button className={s.button}>Logout</button> : <AuthNav />}
     </nav>
   );

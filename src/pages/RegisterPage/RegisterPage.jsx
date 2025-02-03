@@ -42,7 +42,7 @@ const RegisterPage = () => {
           <button className={s.button} type="submit">
             Register
           </button>
-          <p className={s.text}>
+          <p style={{ display: "flex", alignItems: "center", gap: "10px" }}>
             You already have an account?{" "}
             <Link className={s.link} to="/login">
               Login!
