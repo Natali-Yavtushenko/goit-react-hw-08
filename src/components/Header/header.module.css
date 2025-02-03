@@ -1,6 +1,6 @@
-.container {
+.title {
   position: absolute;
-  top: 50px;
+  top: 100px;
   left: 50%;
   transform: translate(-50%);
 }

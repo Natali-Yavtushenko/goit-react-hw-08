@@ -7,7 +7,6 @@ const ContactList = () => {
 
   return (
     <div className={s.container}>
-      return (
       <ul>
         {filteredContacts.map(({ id, name, number }) => (
           <li key={id}>
@@ -15,7 +14,6 @@ const ContactList = () => {
           </li>
         ))}
       </ul>
-      );
     </div>
   );
 };
