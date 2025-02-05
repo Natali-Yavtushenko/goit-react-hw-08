@@ -19,7 +19,6 @@ export const registerThunk = createAsyncThunk(
     try {
       const { data } = await axios.post("/users/signup", credentials);
       const { token } = data;
-      localStorage.setItem("token", token);
       setAuthHeader(token);
       return data;
     } catch (error) {
@@ -33,8 +32,6 @@ export const loginThunk = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const { data } = await axios.post("/users/login", credentials);
-      const { token } = data;
-      localStorage.setItem("token", token);
       setAuthHeader(data.token);
       return data;
     } catch (error) {
@@ -47,13 +44,9 @@ export const logOutThunk = createAsyncThunk(
   "auth/logout",
   async (_, thunkAPI) => {
     try {
-      console.log("Sending logout request...");
       await axios.post("/users/logout");
-      localStorage.removeItem("token");
-      console.log("Logout successful");
       clearAuthHeader();
     } catch (error) {
-      console.error("Logout failed:", error.message);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -70,6 +63,7 @@ export const refreshUser = createAsyncThunk(
     setAuthHeader(token);
 
     try {
+      setAuthHeader(token);
       const { data } = await axios.get("/users/current");
       return data;
     } catch (error) {
