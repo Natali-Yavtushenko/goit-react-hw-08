@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../../redux/auth/operations";
-import { AuthNav } from "../AuthNav/AuthNav";
+import AuthNav from "../AuthNav/AuthNav";
 import s from "./Navigation.module.css";
 
 const Navigation = () => {
