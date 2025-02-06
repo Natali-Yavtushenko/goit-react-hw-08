@@ -1,4 +1,8 @@
 .container {
+  position: absolute;
+  top: 580px;
+  left: 50%;
+  transform: translate(-50%);
   display: flex;
   justify-content: center;
   list-style-type: none;

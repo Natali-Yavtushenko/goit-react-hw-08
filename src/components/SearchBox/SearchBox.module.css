@@ -1,4 +1,8 @@
 .wrapper {
+  position: absolute;
+  top: 480px;
+  left: 50%;
+  transform: translate(-50%);
   display: flex;
   flex-direction: column;
   margin-bottom: 16px;

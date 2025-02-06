@@ -5,5 +5,10 @@
 }
 
 .username {
+  position: absolute;
+  top: 440px;
+  left: -57%;
+  transform: translate(-50%);
   font-weight: 700;
+  font-size: 45px;
 }

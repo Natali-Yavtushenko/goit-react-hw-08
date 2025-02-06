@@ -1,4 +1,8 @@
 .formWrapper {
+  position: absolute;
+  top: 170px;
+  left: 50%;
+  transform: translate(-50%);
   display: flex;
   align-items: center;
   justify-content: center;
