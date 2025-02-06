@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { addContact, deleteContact, fetchContacts } from "./operations";
+import { loginThunk, logOutThunk } from "../auth/operations";
 
 const handlePending = (state) => {
   state.isLoading = true;
@@ -49,7 +50,19 @@ const contactsSlice = createSlice({
           (contact) => contact.id !== action.payload.id
         );
       })
-      .addCase(deleteContact.rejected, handleRejected);
+      .addCase(deleteContact.rejected, handleRejected)
+      .addCase(loginThunk.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+        state.token = action.payload.token;
+        state.isLoading = true;
+        localStorage.setItem("token", action.payload.token);
+      })
+      .addCase(logOutThunk.fulfilled, (state) => {
+        state.user = { name: null, email: null };
+        state.token = null;
+        state.isLoading = false;
+        localStorage.removeItem("token");
+      });
   },
 });
 
